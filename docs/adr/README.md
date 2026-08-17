@@ -21,5 +21,6 @@ O projeto tem como objetivo publicar um conjunto de dados abertos no [Portal de 
 | [0002](0002-publicacao-portal-dados-abertos-mg.md) | Publicar o conjunto de dados no Portal de Dados Abertos de MG | proposto (falta fluxo de validação do portal) |
 | [0003](0003-atualizacao-diaria-via-dpm.md) | Atualização diária dos dados via `dpm` | proposto (falta detalhar etapas do pipeline) |
 | [0004](0004-script-de-transformacao-scripts-transform.md) | Script de transformação em `scripts/transform.py` | aceito |
+| [0005](0005-gerar-datapackage-raiz.md) | Gerar `datapackage.json` na raiz descrevendo o dataset publicado | aceito (título do pacote pendente) |
 
 > Rascunho iniciado em 2026-08-17. Decisões centrais já resolvidas em 2026-08-17; pontos remanescentes seguem marcados com `[A DEFINIR]` em cada ADR até serem confirmados junto ao manual do portal e à implementação do pipeline.

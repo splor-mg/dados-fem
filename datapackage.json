@@ -1,0 +1,123 @@
+{
+  "resources": [
+    {
+      "name": "fem_execucao",
+      "type": "table",
+      "path": "data/fem_execucao.csv",
+      "scheme": "file",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "ano",
+            "type": "string",
+            "title": "Ano de Exercício",
+            "description": "Ano de exercício do orçamento fiscal.\n",
+            "constraints": {
+              "required": true,
+              "pattern": "^[1-9]\\d{3}$"
+            }
+          },
+          {
+            "name": "uo_cod",
+            "type": "string",
+            "title": "Unidade Orçamentária - Código",
+            "description": "Código representativo da unidade orçamentária.\n",
+            "constraints": {
+              "required": true,
+              "pattern": "^[1-9]\\d{3}$"
+            }
+          },
+          {
+            "name": "acao_cod",
+            "type": "string",
+            "title": "Projeto_Atividade - Código",
+            "description": "Código identificador do conjunto de operações, limitadas no tempo (projeto) ou realizadas de modo contínuo e permanente (atividade)\ndos quais resulta um produto final (projeto) ou necessárias à manutenção da ação governamental (atividade).\n",
+            "constraints": {
+              "pattern": "^(0|[1-9]\\d{3})$"
+            }
+          },
+          {
+            "name": "fonte_cod",
+            "type": "string",
+            "title": "Fonte Recurso - Código",
+            "description": "Código referente à fonte dos recursos financeiros, de acordo com o SIAFI-MG.\n",
+            "constraints": {
+              "required": true,
+              "pattern": "^(0|[1-9]\\d{0,1})$"
+            }
+          },
+          {
+            "name": "vlr_credito_inicial",
+            "type": "number",
+            "title": "Valor Crédito Inicial",
+            "description": "Valor, em reais, do crédito orçamentário aprovado pela Lei Orçamentária.\n",
+            "constraints": {
+              "minimum": 0
+            }
+          },
+          {
+            "name": "vlr_credito_autorizado",
+            "type": "number",
+            "title": "Valor Crédito Autorizado",
+            "description": "Valor, em reais, correspondente ao somatório dos créditos disponíveis para a execução da despesa.\n"
+          },
+          {
+            "name": "vlr_cota_descentralizada",
+            "type": "number",
+            "title": "Valor Cota Descentralizada",
+            "description": "Valor, em reais, das cotas descentralizadas às unidades executotas.\n",
+            "constraints": {
+              "minimum": 0
+            }
+          },
+          {
+            "name": "vlr_empenhado",
+            "type": "number",
+            "title": "Valor Despesa Empenhada",
+            "description": "Valor líquido, em reais, da despesa empenhada.\n"
+          },
+          {
+            "name": "vlr_liquidado",
+            "type": "number",
+            "title": "Valor Despesa Liquidada",
+            "description": "Valor total da despesa liquidada, em reais.\n"
+          },
+          {
+            "name": "vlr_liquidado_retido",
+            "type": "number",
+            "title": "Valor Liquidado Retido",
+            "description": "Valor, em reais, referente às retenções - parte da liquidação a favor de terceiros,\nindicado apenas para análise de um documento de liquidação específico.\n"
+          },
+          {
+            "name": "vlr_pago_orcamentario",
+            "type": "number",
+            "title": "Valor Pago Orçamentário",
+            "description": "Valor pago, por empenho.\n",
+            "constraints": {
+              "minimum": 0
+            }
+          },
+          {
+            "name": "vlr_pago_financeiro",
+            "type": "number",
+            "title": "Valor Pago Financeiro",
+            "description": "Valor referente aos pagamentos efetuados através de movimentações bancárias, escriturais e apropriação contábil da despesa.\nEsse cálculo não inclui valor de anulação de despesa paga.\n"
+          }
+        ]
+      }
+    }
+  ],
+  "name": "dados_fem",
+  "title": "Dados FEM",
+  "owner_org": "secretaria-de-estado-de-planejamento-e-gestao-seplag",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ]
+}
