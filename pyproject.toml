@@ -10,7 +10,8 @@ requires-python = '>=3.13,<4.0'
 dependencies = [
     'dpm @ git+https://github.com/splor-mg/dpm.git',
     'taskipy (>=1.14.1,<2.0.0)',
-    "python-dotenv (>=1.2.1,<2.0.0)"
+    "python-dotenv (>=1.2.1,<2.0.0)",
+    "frictionless[pandas] (>=5.19.0,<6.0.0)"
 ]
 
 
