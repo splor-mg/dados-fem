@@ -1,8 +1,8 @@
 # 0001. Adotar Architecture Decision Records
 
-* Status: proposto
+* Status: aceito
 * Data: 2026-08-17
-* Responsável(is): [A DEFINIR]
+* Responsável(is): Gabriel Dornas
 
 ## Contexto
 

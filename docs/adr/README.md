@@ -17,8 +17,8 @@ O projeto tem como objetivo publicar um conjunto de dados abertos no [Portal de 
 
 | ADR | Título | Status |
 |---|---|---|
-| [0001](0001-adotar-adr.md) | Adotar Architecture Decision Records | proposto |
-| [0002](0002-publicacao-portal-dados-abertos-mg.md) | Publicar o conjunto de dados no Portal de Dados Abertos de MG | proposto |
-| [0003](0003-atualizacao-diaria-via-dpm.md) | Atualização diária dos dados via `dpm` | proposto |
+| [0001](0001-adotar-adr.md) | Adotar Architecture Decision Records | aceito |
+| [0002](0002-publicacao-portal-dados-abertos-mg.md) | Publicar o conjunto de dados no Portal de Dados Abertos de MG | proposto (falta fluxo de validação do portal) |
+| [0003](0003-atualizacao-diaria-via-dpm.md) | Atualização diária dos dados via `dpm` | proposto (falta detalhar etapas do pipeline) |
 
-> Rascunho inicial gerado em 2026-08-17 para revisão. Campos marcados com `[A DEFINIR]` precisam ser preenchidos/confirmados antes de mudar o status para `aceito`.
+> Rascunho iniciado em 2026-08-17. Decisões centrais já resolvidas em 2026-08-17; pontos remanescentes seguem marcados com `[A DEFINIR]` em cada ADR até serem confirmados junto ao manual do portal e à implementação do pipeline.

@@ -1,20 +1,19 @@
 # 0003. Atualização diária dos dados via `dpm`
 
-* Status: proposto
+* Status: proposto (falta detalhar as etapas de transformação/publicação do pipeline)
 * Data: 2026-08-17
-* Responsável(is): [A DEFINIR]
+* Responsável(is): Gabriel Dornas
 
 ## Contexto
 
 O conjunto de dados a ser publicado no Portal de Dados Abertos de MG (ver ADR [0002](0002-publicacao-portal-dados-abertos-mg.md)) precisa ser atualizado diariamente, refletindo a fonte de origem (`siafi`, descrita em [`data.toml`](../../data.toml)). O projeto já depende da biblioteca [`dpm`](https://github.com/splor-mg/dpm) (Data Package Manager), que instala/baixa recursos descritos em um `datapackage.json` (padrão [Frictionless Data Package](https://specs.frictionlessdata.io/data-package/)) via `dpm install`.
 
-Ainda não estão definidos:
+Ainda falta detalhar:
 
-* Onde/como a rotina diária será executada (ex.: GitHub Actions agendado via `cron`, outro orquestrador já usado pela equipe).
-* Horário de execução e fuso horário de referência.
-* Etapas do pipeline após o `dpm install` (transformação/análise em `dados_fem/main.py`, geração do artefato final, publicação no portal).
-* Tratamento de falhas: o que acontece se a fonte (`dados-siafi-2026`) não atualizar, estiver indisponível, ou o schema mudar.
-* Alertas/notificação em caso de falha na atualização diária.
+* As etapas concretas do pipeline após o `dpm install` (transformação/análise em `dados_fem/main.py`, geração do artefato final a publicar) — `[A DEFINIR]`.
+* O que acontece especificamente se a fonte (`dados-siafi-2026`) não atualizar ou o schema mudar (validação de schema antes de publicar) — `[A DEFINIR]`.
+
+Os demais itens (onde a rotina roda, horário, tratamento de falha, gestão do segredo) já foram definidos (ver Decisão).
 
 ## Decisão
 
@@ -24,9 +23,10 @@ Usar `dpm` como ferramenta de obtenção dos dados de origem, orquestrada por um
 2. Executa a análise/transformação do projeto (`dados_fem`) sobre os dados baixados.
 3. Publica/atualiza o dataset no Portal de Dados Abertos de MG (ADR [0002](0002-publicacao-portal-dados-abertos-mg.md)).
 
-Mecanismo de agendamento: `[A DEFINIR]` (ex.: GitHub Actions `schedule`).
-Horário/fuso: `[A DEFINIR]`.
-Estratégia de tratamento de falhas e alertas: `[A DEFINIR]`.
+* Mecanismo de agendamento: GitHub Actions (`schedule`/cron), mesmo ambiente já usado no repositório (`.github/workflows/`).
+* Horário/fuso: 10h, horário de São Paulo/Brasília (America/Sao_Paulo).
+* Estratégia de tratamento de falhas: se qualquer etapa do pipeline falhar, o job falha e não publica dado parcial/incorreto; a equipe é notificada automaticamente (ex.: GitHub Actions enviando e-mail/mensagem em caso de falha do workflow).
+* Gestão do segredo `GH_TOKEN`: armazenado como GitHub Actions Secret (do repositório ou da organização), nunca versionado em `.env`.
 
 ## Alternativas consideradas
 
@@ -37,4 +37,4 @@ Estratégia de tratamento de falhas e alertas: `[A DEFINIR]`.
 
 * O projeto fica dependente da disponibilidade e da API do `dpm` e da fonte `dados-siafi-2026`; mudanças nesses repositórios podem quebrar a atualização diária.
 * É necessário monitorar a execução diária e ter um plano de resposta a falhas antes de considerar a publicação como confiável para um consumidor externo.
-* O token de acesso (`GH_TOKEN`, hoje em `.env`) usado pelo `dpm` para instalar o pacote `siafi` precisa de uma estratégia de gestão de segredo compatível com o ambiente de execução agendado (ex.: GitHub Actions Secrets), já que `.env` é local.
+* O token de acesso (`GH_TOKEN`) usado pelo `dpm` para instalar o pacote `siafi` passa a ser gerido via GitHub Actions Secrets no ambiente de execução agendada, deixando de depender do `.env` local (que segue útil apenas para desenvolvimento).

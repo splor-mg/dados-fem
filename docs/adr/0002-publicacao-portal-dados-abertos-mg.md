@@ -1,29 +1,24 @@
 # 0002. Publicar o conjunto de dados no Portal de Dados Abertos de MG
 
-* Status: proposto
+* Status: proposto (falta confirmar o fluxo de validação/homologação do portal)
 * Data: 2026-08-17
-* Responsável(is): [A DEFINIR]
+* Responsável(is): Gabriel Dornas
 
 ## Contexto
 
 O objetivo do `dados-fem` é disponibilizar publicamente, como dado aberto, um conjunto de dados tratado a partir de fonte(s) já existente(s) no ecossistema SPLOR (ex.: pacote `siafi` referenciado em [`data.toml`](../../data.toml), com os recursos `execucao` e `receita`). A publicação será feita no [Portal de Dados Abertos do Estado de Minas Gerais](https://dados.mg.gov.br/), plataforma oficial baseada em CKAN, cujo processo de publicação está descrito no [Manual do Portal de Dados Abertos de MG](https://transparencia-mg.github.io/manual-dados-mg/0.1/).
 
-Ainda faltam definir, junto ao manual/equipe de transparência, itens obrigatórios do processo de publicação:
-
-* Formatos de arquivo aceitos e formato(s) escolhido(s) para este conjunto (ex.: CSV).
-* Organização (`owner_org`) responsável pelo dataset no portal.
-* Licença de uso dos dados.
-* Nome, título e descrição do conjunto de dados como aparecerão no portal.
-* Fluxo de validação/homologação exigido pelo portal antes da publicação.
+Ainda falta confirmar, junto ao manual/equipe de transparência, o fluxo de validação/homologação exigido pelo portal antes da publicação (`[A DEFINIR]`). Os demais itens obrigatórios do processo de publicação já foram definidos (ver Decisão).
 
 ## Decisão
 
 Publicar o conjunto de dados resultante da análise no Portal de Dados Abertos de Minas Gerais (dados.mg.gov.br), como dataset aberto, seguindo o processo de documentação e validação descrito no manual oficial.
 
-* Organização (`owner_org`): `[A DEFINIR]` (a fonte `siafi` usada como insumo já referencia `secretaria-de-estado-de-planejamento-e-gestao-seplag` — confirmar se esta é também a organização do dataset publicado).
-* Formato(s) de publicação: `[A DEFINIR]`
-* Licença: `[A DEFINIR]`
-* Nome/slug do dataset no portal: `[A DEFINIR]`
+* Organização (`owner_org`): `secretaria-de-estado-de-planejamento-e-gestao-seplag` — mesma organização já usada pela fonte `siafi`, mantendo consistência com o dado de origem.
+* Formato(s) de publicação: CSV + `datapackage.json` (schema descrito no padrão Frictionless Data Package, já usado no projeto).
+* Licença: Creative Commons CC-BY 4.0.
+* Nome/slug do dataset no portal: `dados-fem`.
+* Fluxo de validação/homologação exigido pelo portal: `[A DEFINIR]`.
 
 ## Alternativas consideradas
 
