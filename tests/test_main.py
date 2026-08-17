@@ -1,4 +1,4 @@
-from my_pkg import main
+from scripts import main
 
 
 def test_hello():

@@ -6,7 +6,7 @@
 
 ## Contexto
 
-O objetivo do `dados-fem` é disponibilizar publicamente, como dado aberto, um conjunto de dados tratado a partir de fonte(s) já existente(s) no ecossistema SPLOR (ex.: pacote `siafi` referenciado em [`data.toml`](../../data.toml), com os recursos `execucao` e `receita`). A publicação será feita no [Portal de Dados Abertos do Estado de Minas Gerais](https://dados.mg.gov.br/), plataforma oficial baseada em CKAN, cujo processo de publicação está descrito no [Manual do Portal de Dados Abertos de MG](https://transparencia-mg.github.io/manual-dados-mg/0.1/).
+O objetivo do `dados-fem` é disponibilizar publicamente, como dado aberto, um conjunto de dados tratado a partir de fonte(s) já existente(s) no ecossistema SPLOR (ex.: pacote `siafi` referenciado em [`data.toml`](../../data.toml), com os recursos `execucao` e `credito`). A publicação será feita no [Portal de Dados Abertos do Estado de Minas Gerais](https://dados.mg.gov.br/), plataforma oficial baseada em CKAN, cujo processo de publicação está descrito no [Manual do Portal de Dados Abertos de MG](https://transparencia-mg.github.io/manual-dados-mg/0.1/).
 
 Ainda falta confirmar, junto ao manual/equipe de transparência, o fluxo de validação/homologação exigido pelo portal antes da publicação (`[A DEFINIR]`). Os demais itens obrigatórios do processo de publicação já foram definidos (ver Decisão).
 
