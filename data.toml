@@ -1,0 +1,6 @@
+[packages]
+
+[packages.siafi]
+path = "https://raw.githubusercontent.com/splor-mg/dados-siafi-2026/main/datapackage.json"
+token = "GH_TOKEN"
+resources = ["execucao", "receita"]
