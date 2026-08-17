@@ -58,3 +58,5 @@ format = { cmd = 'ruff format', help = 'Formats code according to code style con
 pre_test = { cmd = 'task lint', help = 'Runs linters before running the tests.' }
 test = { cmd = 'pytest -s -x -vv', help = 'Runs unit tests.' }
 post_test = { cmd = 'coverage html', help = 'Generates a coverage report after the tests.' }
+extract = { cmd = 'dpm install', help = 'Extract data.' }
+transform = { cmd = 'python scripts/transform.py', help = 'Transform data.' }
