@@ -12,7 +12,7 @@ Os recursos de origem ficam em `datapackages/siafi/data/*.csv.gz` após o `dpm i
 
 ## Decisão
 
-Criar `scripts/transform.py` como o script responsável pela etapa de transformação do pipeline: lê os recursos baixados pelo `dpm`, aplica a análise/transformação do projeto e grava o resultado em `data/fem.csv`, pronto para a etapa de publicação.
+Criar `scripts/transform.py` como o script responsável pela etapa de transformação do pipeline: lê os recursos baixados pelo `dpm`, aplica a análise/transformação do projeto e grava o resultado em `data/fem_execucao.csv`, pronto para a etapa de publicação.
 
 Leitura dos recursos: carregar via `frictionless.Package(datapackages/siafi/datapackage.json)`, iterando `package.resources` e convertendo cada um com `resource.to_pandas()`, em vez de `pd.read_csv` direto no `.csv.gz`. O `datapackage.json` já declara o schema de cada campo (tipo, `constraints`, `pattern`); usar o `frictionless` para instanciar o resource faz a inferência/casting de tipos respeitar esse schema, em vez de depender da inferência genérica do pandas — que erraria tipos em colunas como códigos numéricos com zero à esquerda (ex.: `uo_cod`), tratados como `string` no schema.
 
@@ -21,7 +21,7 @@ Regras de transformação (`transform()`):
 1. Filtrar cada recurso por `fonte_cod == '71'`.
 2. Agregar cada recurso já filtrado por `ano`, `uo_cod`, `acao_cod`, `fonte_cod`, somando (`SUM`) os campos de valor (prefixo `vlr_`) daquele recurso — necessário porque, nessa granularidade de chave, cada recurso tem múltiplas linhas por chave (ex.: `execucao` tem 13.812 linhas para 46 chaves únicas depois do filtro); sem agregar antes, um `JOIN` geraria produto cartesiano e infrutificaria os valores.
 3. Fazer um `LEFT JOIN` (`pd.merge(..., on=KEY_FIELDS, how='left')`) encadeado entre os recursos já agregados, usando `credito` como tabela base — todas as combinações de chave de `credito` são mantidas, com os campos de `execucao` (`vlr_empenhado`, `vlr_liquidado`, `vlr_liquidado_retido`, `vlr_pago_orcamentario`, `vlr_pago_financeiro`) preenchidos quando existir a mesma chave, e `NaN` quando não existir (crédito ainda sem execução correspondente).
-4. Gravar o resultado em `data/fem.csv`.
+4. Gravar o resultado em `data/fem_execucao.csv`.
 
 ## Alternativas consideradas
 
@@ -35,6 +35,6 @@ Regras de transformação (`transform()`):
 ## Consequências
 
 * O pipeline diário passa a ter uma etapa intermediária explícita e testável, separada do download (`dpm`) e da publicação (portal).
-* O dataset final (`data/fem.csv`) fica restrito a `fonte_cod == '71'`, agregado por `ano`/`uo_cod`/`acao_cod`/`fonte_cod` — perde a granularidade original (por empenho, por processo de compra etc.); qualquer análise que precise dessa granularidade não pode usar este dataset como está.
+* O dataset final (`data/fem_execucao.csv`) fica restrito a `fonte_cod == '71'`, agregado por `ano`/`uo_cod`/`acao_cod`/`fonte_cod` — perde a granularidade original (por empenho, por processo de compra etc.); qualquer análise que precise dessa granularidade não pode usar este dataset como está.
 * Combinações de chave de `execucao` sem `credito` correspondente são descartadas pelo `LEFT JOIN`; se isso ocorrer na prática (inconsistência entre as bases), a linha correspondente desaparece silenciosamente do resultado — vale monitorar.
 * `data/` passa a ser o diretório de saída candidato à publicação; falta decidir se ele é versionado no repositório ou tratado como artefato de build (gerado a cada execução, sem commit), e se a saída deve ser comprimida antes de publicar.

@@ -48,7 +48,7 @@ def transform(dfs: list[pd.DataFrame]) -> pd.DataFrame:
 
 def save(df: pd.DataFrame) -> Path:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    output_path = OUTPUT_DIR / 'fem.csv'
+    output_path = OUTPUT_DIR / 'fem_execucao.csv'
     df.to_csv(output_path, index=False)
     return output_path
 
