@@ -22,5 +22,6 @@ O projeto tem como objetivo publicar um conjunto de dados abertos no [Portal de 
 | [0003](0003-atualizacao-diaria-via-dpm.md) | Atualização diária dos dados via `dpm` | aceito |
 | [0004](0004-script-de-transformacao-scripts-transform.md) | Script de transformação em `scripts/transform.py` | aceito |
 | [0005](0005-gerar-datapackage-raiz.md) | Gerar `datapackage.json` na raiz descrevendo o dataset publicado | aceito |
+| [0006](0006-publicacao-via-frictionless-publish-e-task-etl.md) | Publicação via `frictionless publish` (CKAN) e task `etl` unificada | proposto (risco bloqueante: duplicação de recursos) |
 
-> Rascunho iniciado em 2026-08-17. Todas as decisões centrais aceitas em 2026-08-17. A definição concreta das etapas do workflow do GitHub Actions (extract → transform → build datapackage → validate → publish → commit) fica para uma ADR específica, ainda a ser criada.
+> Rascunho iniciado em 2026-08-17. A definição concreta do workflow do GitHub Actions (job que chama a task `etl`, step de commit, step de criação de Issue em falha) fica para uma ADR específica, ainda a ser criada.
