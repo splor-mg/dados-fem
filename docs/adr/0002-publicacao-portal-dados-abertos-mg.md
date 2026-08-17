@@ -1,14 +1,12 @@
 # 0002. Publicar o conjunto de dados no Portal de Dados Abertos de MG
 
-* Status: proposto (falta confirmar o fluxo de validação/homologação do portal)
+* Status: aceito
 * Data: 2026-08-17
 * Responsável(is): Gabriel Dornas
 
 ## Contexto
 
 O objetivo do `dados-fem` é disponibilizar publicamente, como dado aberto, um conjunto de dados tratado a partir de fonte(s) já existente(s) no ecossistema SPLOR (ex.: pacote `siafi` referenciado em [`data.toml`](../../data.toml), com os recursos `execucao` e `credito`). A publicação será feita no [Portal de Dados Abertos do Estado de Minas Gerais](https://dados.mg.gov.br/), plataforma oficial baseada em CKAN, cujo processo de publicação está descrito no [Manual do Portal de Dados Abertos de MG](https://transparencia-mg.github.io/manual-dados-mg/0.1/).
-
-Ainda falta confirmar, junto ao manual/equipe de transparência, o fluxo de validação/homologação exigido pelo portal antes da publicação (`[A DEFINIR]`). Os demais itens obrigatórios do processo de publicação já foram definidos (ver Decisão).
 
 ## Decisão
 
@@ -18,7 +16,7 @@ Publicar o conjunto de dados resultante da análise no Portal de Dados Abertos d
 * Formato(s) de publicação: CSV + `datapackage.json` (schema descrito no padrão Frictionless Data Package, já usado no projeto).
 * Licença: Creative Commons CC-BY 4.0.
 * Nome/slug do dataset no portal: `dados-fem`.
-* Fluxo de validação/homologação exigido pelo portal: `[A DEFINIR]`.
+* Fluxo de validação/homologação exigido pelo portal: o `datapackage.json` gerado (ADR [0005](0005-gerar-datapackage-raiz.md)) precisa passar pela task `validate` (`frictionless validate datapackage.json`, definida em `pyproject.toml`) antes da publicação — se a validação falhar, a publicação não deve prosseguir.
 
 ## Alternativas consideradas
 
@@ -29,4 +27,4 @@ Publicar o conjunto de dados resultante da análise no Portal de Dados Abertos d
 
 * O projeto passa a ter um compromisso de qualidade e estabilidade de schema com um público externo (usuários do portal), não apenas com consumidores internos.
 * Mudanças na estrutura dos dados publicados precisam considerar impacto em quem já consome o dataset aberto.
-* É necessário validar os metadados exigidos pelo portal antes de cada publicação (ver ADR [0003](0003-atualizacao-diaria-via-dpm.md) para a automação da atualização).
+* A task `validate` passa a ser um gate obrigatório do pipeline diário antes da publicação (ver ADR [0003](0003-atualizacao-diaria-via-dpm.md) para a automação da atualização).

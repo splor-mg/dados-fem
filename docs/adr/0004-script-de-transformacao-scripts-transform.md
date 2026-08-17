@@ -29,12 +29,11 @@ Regras de transformação (`transform()`):
 * Fazer a transformação em notebook — descartado por dificultar a execução automatizada diária (ADR 0003).
 * Ler os recursos com `pd.read_csv` direto no arquivo `.csv.gz` — descartado por ignorar o schema declarado no `datapackage.json`, deixando a inferência de tipos a cargo do pandas.
 * Unir os recursos com `pd.concat` (uma linha por linha de origem, empilhadas) — primeira versão implementada, descartada por não corresponder ao resultado desejado: gerava uma linha por chave *por recurso* (union), em vez de uma linha por chave com os valores de ambos os recursos lado a lado (join).
-* `INNER JOIN` ou `FULL OUTER JOIN` em vez de `LEFT JOIN` com `credito` como base — descartados porque o requisito é manter toda combinação de chave de `credito` (crédito orçamentário concedido), mesmo quando ainda não há execução correspondente; um `INNER JOIN` descartaria essas linhas, e um `FULL OUTER JOIN` também traria combinações de `execucao` sem crédito correspondente, o que não é esperado neste conjunto (toda execução pressupõe crédito).
+* `INNER JOIN` ou `FULL OUTER JOIN` em vez de `LEFT JOIN` com `credito` como base — descartados porque o requisito é manter toda combinação de chave de `credito` (crédito orçamentário concedido), mesmo quando ainda não há execução correspondente; um `INNER JOIN` descartaria essas linhas. `FULL OUTER JOIN` não se justifica pela regra orçamentária: não existe execução sem crédito prévio (essa consistência já é garantida em outras bases fora deste pipeline), então não há combinação de `execucao` sem `credito` correspondente a preservar.
 * `JOIN`/agregação na granularidade original (sem `GROUP BY` antes) — descartado por gerar produto cartesiano entre as múltiplas linhas de mesma chave em cada recurso.
 
 ## Consequências
 
 * O pipeline diário passa a ter uma etapa intermediária explícita e testável, separada do download (`dpm`) e da publicação (portal).
 * O dataset final (`data/fem_execucao.csv`) fica restrito a `fonte_cod == '71'`, agregado por `ano`/`uo_cod`/`acao_cod`/`fonte_cod` — perde a granularidade original (por empenho, por processo de compra etc.); qualquer análise que precise dessa granularidade não pode usar este dataset como está.
-* Combinações de chave de `execucao` sem `credito` correspondente são descartadas pelo `LEFT JOIN`; se isso ocorrer na prática (inconsistência entre as bases), a linha correspondente desaparece silenciosamente do resultado — vale monitorar.
-* `data/` passa a ser o diretório de saída candidato à publicação; falta decidir se ele é versionado no repositório ou tratado como artefato de build (gerado a cada execução, sem commit), e se a saída deve ser comprimida antes de publicar.
+* `data/` passa a ser o diretório de saída candidato à publicação e será versionado no repositório (ver ADR [0003](0003-atualizacao-diaria-via-dpm.md)); falta decidir se a saída deve ser comprimida antes de publicar.

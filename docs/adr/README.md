@@ -18,9 +18,9 @@ O projeto tem como objetivo publicar um conjunto de dados abertos no [Portal de 
 | ADR | Título | Status |
 |---|---|---|
 | [0001](0001-adotar-adr.md) | Adotar Architecture Decision Records | aceito |
-| [0002](0002-publicacao-portal-dados-abertos-mg.md) | Publicar o conjunto de dados no Portal de Dados Abertos de MG | proposto (falta fluxo de validação do portal) |
-| [0003](0003-atualizacao-diaria-via-dpm.md) | Atualização diária dos dados via `dpm` | proposto (falta detalhar etapas do pipeline) |
+| [0002](0002-publicacao-portal-dados-abertos-mg.md) | Publicar o conjunto de dados no Portal de Dados Abertos de MG | aceito |
+| [0003](0003-atualizacao-diaria-via-dpm.md) | Atualização diária dos dados via `dpm` | aceito |
 | [0004](0004-script-de-transformacao-scripts-transform.md) | Script de transformação em `scripts/transform.py` | aceito |
-| [0005](0005-gerar-datapackage-raiz.md) | Gerar `datapackage.json` na raiz descrevendo o dataset publicado | aceito (título do pacote pendente) |
+| [0005](0005-gerar-datapackage-raiz.md) | Gerar `datapackage.json` na raiz descrevendo o dataset publicado | aceito |
 
-> Rascunho iniciado em 2026-08-17. Decisões centrais já resolvidas em 2026-08-17; pontos remanescentes seguem marcados com `[A DEFINIR]` em cada ADR até serem confirmados junto ao manual do portal e à implementação do pipeline.
+> Rascunho iniciado em 2026-08-17. Todas as decisões centrais aceitas em 2026-08-17. A definição concreta das etapas do workflow do GitHub Actions (extract → transform → build datapackage → validate → publish → commit) fica para uma ADR específica, ainda a ser criada.

@@ -61,3 +61,4 @@ post_test = { cmd = 'coverage html', help = 'Generates a coverage report after t
 extract = { cmd = 'dpm install', help = 'Extract data.' }
 transform = { cmd = 'python scripts/transform.py', help = 'Transform data.' }
 build_datapackage = { cmd = 'python scripts/build_datapackage.py', help = 'Build datapackage.' }
+validate = { cmd = 'frictionless validate datapackage.json', help = 'Validates datapackage.' }

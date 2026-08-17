@@ -22,7 +22,7 @@ DATAPACKAGES_GLOB = 'datapackages/*/datapackage.json'
 OUTPUT_PATH = Path('datapackage.json')
 
 PACKAGE_NAME = 'dados_fem'
-PACKAGE_TITLE = 'Dados FEM'  # TODO: confirmar título definitivo do dataset
+PACKAGE_TITLE = 'Dados FEM'
 OWNER_ORG = 'secretaria-de-estado-de-planejamento-e-gestao-seplag'
 LICENSES = [
     {
