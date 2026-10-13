@@ -4,11 +4,11 @@ Short sentence describing what this project does and who it is for.
 
 ## Context & Problem
 
-Explain *why* this exists.
+Explain _why_ this exists.
 
-* What problem does it solve?
-* Who uses it?
-* What process does it automate or improve?
+- What problem does it solve?
+- Who uses it?
+- What process does it automate or improve?
 
 Example:
 
@@ -18,14 +18,14 @@ Example:
 
 Bullet list of what the project does.
 
-* Fetches data from source X.
-* Validates and cleans records.
-* Generates CSV / JSON output.
-* Logs failures.
+- Fetches data from source X.
+- Validates and cleans records.
+- Generates CSV / JSON output.
+- Logs failures.
 
-This is for *non-technical readers*.
+This is for _non-technical readers_.
 
-## Prerequisites
+## Prerequisitos
 
 These should be **identical in almost all repos**:
 
@@ -60,4 +60,3 @@ To see all project's tasks.
 # otherwise run 'poetry run task list'
 task list
 ```
-
